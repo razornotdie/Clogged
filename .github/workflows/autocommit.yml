@@ -7,7 +7,7 @@ on:
       - master
       
   schedule:
-  - cron: "*/7 * * * *" # See https://crontab.guru/#0_7,9,11_*_*_1,3
+  - cron: "0 */11 * * *" # See https://crontab.guru/#0_7,9,11_*_*_1,3
 
 jobs:
   auto_commit:
@@ -29,16 +29,16 @@ jobs:
           git config --local user.name "razornotdie"
           git add -A
           
-          arr[0]="RZR(bot): 😂 clogged v1"
-          arr[1]="RZR(bot): 😱 clogged v2"
-          arr[2]="RZR(bot): 👿 clogged v3"
-          arr[3]="RZR(bot): 💩 clogged v4"
-          arr[4]="RZR(bot): 🙏 clogged v5"
-          arr[5]="RZR(bot): 🙈 clogged v6"
-          arr[6]="RZR(bot): 🐐 clogged v7"
-          arr[7]="RZR(bot): 🤖 clogged v8"
-          arr[8]="RZR(bot): 🟩 clogged v9"
-          arr[9]="RZR(bot): 👻 clogged v10"
+          arr[0]="RZR : 😂 clogged v1"
+          arr[1]="RZR : 😱 clogged v2"
+          arr[2]="RZR : 👿 clogged v3"
+          arr[3]="RZR : 💩 clogged v4"
+          arr[4]="RZR : 🙏 clogged v5"
+          arr[5]="RZR : 🙈 clogged v6"
+          arr[6]="RZR : 🐐 clogged v7"
+          arr[7]="RZR : 🤖 clogged v8"
+          arr[8]="RZR : 🟩 clogged v9"
+          arr[9]="RZR : 👻 clogged v10"
           
           rand=$[$RANDOM % ${#arr[@]}]
           
