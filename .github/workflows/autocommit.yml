@@ -1,0 +1,52 @@
+name: Auto commit
+
+on:
+
+  push:
+    branches:
+      - main
+      
+  schedule:
+  - cron: "*/7 * * * *" # See https://crontab.guru/#0_7,9,11_*_*_1,3
+
+jobs:
+  auto_commit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2      
+        with:
+         persist-credentials: false
+         fetch-depth: 0
+
+      - name: Modify last update
+        run: |
+          d=`date '+%Y-%m-%dT%H:%M:%SZ'`
+          echo $d > clogged
+          
+      - name: Commit changes
+        run: |
+          git config --local user.email "razornotdie@gmail.com"
+          git config --local user.name "razornotdie"
+          git add -A
+          
+          arr[0]="RZR(bot): 😂 clogged v1"
+          arr[1]="RZR(bot): 😱 clogged v2"
+          arr[2]="RZR(bot): 👿 clogged v3"
+          arr[3]="RZR(bot): 💩 clogged v4"
+          arr[4]="RZR(bot): 🙏 clogged v5"
+          arr[5]="RZR(bot): 🙈 clogged v6"
+          arr[6]="RZR(bot): 🐐 clogged v7"
+          arr[7]="RZR(bot): 🤖 clogged v8"
+          arr[8]="RZR(bot): 🟩 clogged v9"
+          arr[9]="RZR(bot): 👻 clogged v10"
+          
+          rand=$[$RANDOM % ${#arr[@]}]
+          
+          git commit -m "${arr[$rand]}"
+          
+      - name: GitHub Push
+        uses: ad-m/github-push-action@v0.5.0
+        with:
+          force: true
+          directory: "."
+          github_token: ${{ secrets.GITHUB_TOKEN }}
